@@ -2,13 +2,13 @@
 
 namespace controllers;
 
-class Main
+class Main extends Controller
 {
     public function index(){
-        echo 'Method index in class ' . __CLASS__;
+        $this->render(__CLASS__, __METHOD__);
     }
 
-    public function article(){
-        echo 'Article';
+    public function test(){
+        $this->render(__CLASS__, __METHOD__);
     }
 }

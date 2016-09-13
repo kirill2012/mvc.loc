@@ -2,6 +2,7 @@
 
 namespace core;
 
+
 class App
 {
     public function start(){
@@ -20,9 +21,9 @@ class App
         }elseif(method_exists('controllers\\main', $route_pieces[1])){
             $action = $route_pieces[1];
         }
-
         $controller = new $controller;
-        $controller->$action();
+
+        call_user_func_array([$controller, $action], $_GET);
 
     }
 

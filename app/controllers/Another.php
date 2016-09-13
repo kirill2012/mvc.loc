@@ -2,13 +2,14 @@
 
 namespace controllers;
 
-class Another
+
+class Another extends Controller
 {
     public function index(){
-        echo 'Method index in class ' . __CLASS__;
+        $this->render(__CLASS__, __METHOD__);
     }
 
     public function test(){
-        echo 'Test';
+        $this->render(__CLASS__, __METHOD__);
     }
 }
