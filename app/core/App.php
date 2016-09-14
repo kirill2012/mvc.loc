@@ -2,10 +2,12 @@
 
 namespace core;
 
-
 class App
 {
+
     public function start(){
+
+        require APP . 'config/db.php';
 
         $controller = 'controllers\\main';
         $action = 'index';
