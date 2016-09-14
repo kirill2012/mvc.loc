@@ -1,14 +1,20 @@
 <?php
 
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', substr(dirname(__FILE__), 0, strripos(dirname(__FILE__), '\\')). DS);
+define('APP', ROOT . 'app' . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
+define('URL', 'http://mvc.loc');
+
+
+require VENDOR . 'autoload.php';
+
 spl_autoload_register(function ($class) {
-    $file = str_replace('\\', '/', dirname(__DIR__) . '/app/' . $class . '.php');
+    //$file = str_replace('\\', '/', dirname(__DIR__) . '/app/' . $class . '.php');
+    $file = APP . $class . '.php';
     if(file_exists($file)){
         require_once $file;
-    }else{
-        echo 'not exists';
     }
-
 });
 
-$app = new \core\App();
-$app->start();
+\core\App::start();

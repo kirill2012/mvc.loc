@@ -1,0 +1,6 @@
+{
+    "name": "user/mvc.loc",
+    "require": {
+        "illuminate/database": "^5.3"
+    }
+}

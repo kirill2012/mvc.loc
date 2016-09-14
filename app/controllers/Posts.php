@@ -5,32 +5,42 @@ namespace controllers;
 class Posts extends Controller
 {
     public function index(){
-        $data = \models\Posts::findall();
+        $data = \models\Posts::all();
         $this->render(__CLASS__, __METHOD__, $data);
     }
 
     public function view($id = ''){
-        $data = \models\Posts::findone($id);
+        $data = \models\Posts::find($id);
         $this->render(__CLASS__, __METHOD__, $data);
     }
 
-    public function edit(){
-
-    }
-
-    public function update(){
-
-    }
-
     public function create(){
-
+        $this->render(__CLASS__, __METHOD__);
     }
 
     public function store(){
-
+        $post = new \models\Posts();
+        $post->title = $_POST['title'];
+        $post->text = $_POST['text'];
+        $post->save();
+        echo '<script type="text/javascript"> window.location.href="' . URL . '/posts"</script>';
     }
 
-    public function delete(){
+    public function edit($id = ''){
+        $data = \models\Posts::find($id);
+        $this->render(__CLASS__, __METHOD__, $data);
+    }
 
+    public function update($id = ''){
+        $post = \models\Posts::find($id);
+        $post->title = $_POST['title'];
+        $post->text = $_POST['text'];
+        $post->save();
+        echo '<script type="text/javascript"> window.location.href="' . URL . '/posts"</script>';
+    }
+
+    public function delete($id = ''){
+        \models\Posts::destroy($id);
+        echo '<script type="text/javascript"> window.location.href="' . URL . '/posts"</script>';
     }
 }
