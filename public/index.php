@@ -6,11 +6,11 @@ define('APP', ROOT . 'app' . DS);
 define('VENDOR', ROOT . 'vendor' . DS);
 define('URL', 'http://mvc.loc');
 
-
 require VENDOR . 'autoload.php';
 
+//require VENDOR . '/fzaninotto/faker/src/autoload.php';
+
 spl_autoload_register(function ($class) {
-    //$file = str_replace('\\', '/', dirname(__DIR__) . '/app/' . $class . '.php');
     $file = APP . $class . '.php';
     if(file_exists($file)){
         require_once $file;

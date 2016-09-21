@@ -2,16 +2,16 @@
 
 namespace controllers;
 
-class Posts extends Controller
+class Posts extends \core\Controller
 {
     public function index(){
         $data = \models\Posts::all();
-        $this->render(__CLASS__, __METHOD__, $data);
+        $this->render(__CLASS__, __METHOD__, 'main', $data);
     }
 
     public function view($id = ''){
         $data = \models\Posts::find($id);
-        $this->render(__CLASS__, __METHOD__, $data);
+        $this->render(__CLASS__, __METHOD__, 'main', $data);
     }
 
     public function create(){
@@ -28,7 +28,7 @@ class Posts extends Controller
 
     public function edit($id = ''){
         $data = \models\Posts::find($id);
-        $this->render(__CLASS__, __METHOD__, $data);
+        $this->render(__CLASS__, __METHOD__, 'main', $data);
     }
 
     public function update($id = ''){

@@ -1,2 +1,1 @@
-<?php
-echo 'Method index in class Another';
+<h1 align="center">Method index in class Another</h1>

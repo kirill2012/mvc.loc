@@ -1,2 +1,1 @@
-<?php
-echo 'Method test in class Another';
+<h1 align="center">Method test in class Another</h1>

@@ -2,8 +2,7 @@
 
 namespace controllers;
 
-
-class Another extends Controller
+class Another extends \core\Controller
 {
     public function index(){
         $this->render(__CLASS__, __METHOD__);
