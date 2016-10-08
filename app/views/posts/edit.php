@@ -1,9 +1,10 @@
 <div style="margin: 3% 5%">
-    <form action="<?=URL?>/posts/update?id=<?= $data['id'] ?>" method="post">
+    <h2><a href="/posts/">All</a></h2><br>
+    <form action="<?=URL?>/posts/update?id=<?= $post->id ?>" method="post">
         <label for="title">Title</label><br>
-        <input type="text" name="title" size="80" value="<?= $data['title'] ?>"><br>
+        <input type="text" name="title" size="80" value="<?= $post->title ?>"><br>
         <label for="text">Text</label><br>
-        <textarea name="text" cols="110" rows="35"><?= $data['text'] ?></textarea><br>
+        <textarea name="text" cols="110" rows="35"><?= $post->text ?></textarea><br>
         <input class="btn" type="submit" value="Edit">
     </form>
 </div>

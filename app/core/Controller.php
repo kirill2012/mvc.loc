@@ -4,11 +4,20 @@ namespace core;
 
 class Controller
 {
-    public function render($class, $method, $layout = 'main' , $data = null){
+    public function render($layout = 'main' , $data = array()){
+
+        $method = debug_backtrace()[1]['class'] . DS . debug_backtrace()[1]['function'];
+
+        $method = str_replace('controllers\\','', $method);
+        $method = str_replace('Controller','', $method);
+        $view = str_replace('::', DS, $method);
+
+        extract($data);
         ob_start();
-        require str_replace('\\', '/', dirname(__DIR__) . '/views/' . substr($class, strripos($class, '\\')+1) . '/' . substr($method, strripos($method, ':') + 1) . '.php');
+        require APP . 'views' . DS . $view . '.php';
         $content = ob_get_clean();
-        require APP . 'views\\layouts\\' . $layout . '.php';
+        require APP . 'views' . DS . 'layouts' . DS . $layout . '.php';
+
     }
 
 }

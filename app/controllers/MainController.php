@@ -2,22 +2,28 @@
 
 namespace controllers;
 
+use core\Controller;
 use core\Session;
 
-class Main extends \core\Controller
+class MainController extends Controller
 {
     public function index($page = 1, $perpage=5){
-        $data = \models\Posts::take($perpage)->skip(($page-1)*$perpage)->get();
-        $this->render(__CLASS__, __METHOD__, 'main', $data);
+        $title = 'Main';
+        $lastPage = ceil(\models\Posts::count() / $perpage);
+        $posts = \models\Posts::take($perpage)->skip(($page-1)*$perpage)->get();
+        $data = compact('title', 'posts', 'lastPage');
+        $this->render('main', $data);
     }
 
     public function view($id = ''){
-        $data = \models\Posts::find($id);
-        $this->render(__CLASS__, __METHOD__, 'main', $data);
+        $title = 'View';
+        $post = \models\Posts::find($id);
+        $data = compact('title', 'post');
+        $this->render('main', $data);
     }
 
     public function register(){
-        $this->render(__CLASS__, __METHOD__);
+        $this->render();
     }
 
     public function store(){
@@ -30,7 +36,7 @@ class Main extends \core\Controller
     }
 
     public function login(){
-    $this->render(__CLASS__, __METHOD__);
+    $this->render();
     }
 
     public function logout(){

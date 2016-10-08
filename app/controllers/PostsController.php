@@ -2,20 +2,25 @@
 
 namespace controllers;
 
-class Posts extends \core\Controller
+class PostsController extends \core\Controller
 {
-    public function index(){
-        $data = \models\Posts::all();
-        $this->render(__CLASS__, __METHOD__, 'main', $data);
+    public function index($page = 1, $perpage=15){
+        $title = 'Posts';
+        $lastPage = ceil(\models\Posts::count() / $perpage);
+        $posts = \models\Posts::take($perpage)->skip(($page-1)*$perpage)->get();
+        $data = compact('title', 'posts', 'lastPage');
+        $this->render('main', $data);
     }
 
     public function view($id = ''){
-        $data = \models\Posts::find($id);
-        $this->render(__CLASS__, __METHOD__, 'main', $data);
+        $title = 'View';
+        $post = \models\Posts::find($id);
+        $data = compact('title', 'post');
+        $this->render('main', $data);
     }
 
     public function create(){
-        $this->render(__CLASS__, __METHOD__);
+        $this->render();
     }
 
     public function store(){
@@ -27,8 +32,10 @@ class Posts extends \core\Controller
     }
 
     public function edit($id = ''){
-        $data = \models\Posts::find($id);
-        $this->render(__CLASS__, __METHOD__, 'main', $data);
+        $title = 'Edit';
+        $post = \models\Posts::find($id);
+        $data = compact('title', 'post');
+        $this->render('main', $data);
     }
 
     public function update($id = ''){

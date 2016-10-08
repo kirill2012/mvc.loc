@@ -2,38 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main</title>
+    <title><?=$title?></title>
     <link rel="stylesheet" type="text/css" href="/public/css/style.css">
 
 </head>
 
 <body>
 
-<div align="right">
-    <span style="color: white; font-size: large" id="username">
-        <?php echo $_SESSION['username'] ? :''; ?>
-    </span>
-    <a href="
-                <?php echo URL . '/'; echo empty($_SESSION['username']) ? 'login' : 'logout'; ?>
-            ">
-    <button class="btn" id="log">
-        <?php echo empty($_SESSION['username']) ? 'Login' : 'Logout'; ?>
-    </button>
-    </a>
-    <?php if ($_SESSION['username']){
-    }else{?>
-    <a href="<?php echo URL . '/register' ?>">
-        <button class="btn" id="reg">Register</button>
-    </a>
-    <?php } ?>
-</div>
+<header>
+    <div id="log">
+        <?php
+        if (!isset($_SESSION['username'])){?>
+            <a href="/login"> Вход</a>
+            <a href="/register">Регистрация</a>
+        <?}else{?>
+            <a href="#"><?=$_SESSION['username']?></a>
+            <a href="/logout">Выход</a>
+        <?}?>
+    </div>
+    <div id="menu">
+        <h3>
+            <a href="/">Main</a>
+            <a href="/another">Another</a>
+            <a href="/posts">Posts</a>
+        </h3>
+    </div>
+
+<header>
 
 <div id="content">
     <?=$content;?>
 </div>
 
-<script src="/public/js/jquery-3.1.0.min.js"></script>
-<script src="/public/js/jquery.cookie.js"></script>
+<footer>
+    (c) 2016 Yevchenko Kirill
+</footer>
 
 </body>
 </html>
