@@ -9,14 +9,14 @@ class PostsController extends \core\Controller
         $lastPage = ceil(\models\Posts::count() / $perpage);
         $posts = \models\Posts::take($perpage)->skip(($page-1)*$perpage)->get();
         $data = compact('title', 'posts', 'lastPage');
-        $this->render('main', $data);
+        $this->render($data);
     }
 
     public function view($id = ''){
         $title = 'View';
         $post = \models\Posts::find($id);
         $data = compact('title', 'post');
-        $this->render('main', $data);
+        $this->render($data);
     }
 
     public function create(){
@@ -35,7 +35,7 @@ class PostsController extends \core\Controller
         $title = 'Edit';
         $post = \models\Posts::find($id);
         $data = compact('title', 'post');
-        $this->render('main', $data);
+        $this->render($data);
     }
 
     public function update($id = ''){
